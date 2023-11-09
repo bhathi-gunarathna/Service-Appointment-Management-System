@@ -6,18 +6,36 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class HelloApplication extends Application {
+public class AppointmentManagementSystem extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(AppointmentManagementSystem.class.getResource("Home.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 690, 526);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        String jdbcURL = "jdbc:mysql://localhost:3306/my_test_01";
+        String username = "root";
+        String password = "";
+
+        Connection conn;
+        conn = DriverManager.getConnection(jdbcURL, username, password);
+        if (conn != null) {
+            System.out.println("connected");
+        } else {
+            System.out.println("error");
+        }
         launch();
     }
 }
