@@ -78,16 +78,17 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane layoutY="-5.0" prefHeight="462.0" prefWidth="342.0">
+                        <ScrollPane layoutY="-5.0" prefHeight="462.0" prefWidth="431.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="457.0" prefWidth="342.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="423.0">
                                  <children>
-                                    <TableView prefHeight="458.0" prefWidth="347.0">
+                                    <TableView prefHeight="458.0" prefWidth="422.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Contact" />
-                                        <TableColumn prefWidth="123.20001220703125" text="Name" />
-                                          <TableColumn prefWidth="72.79998779296875" text="Date" />
-                                          <TableColumn prefWidth="76.0" text="Type" />
+                                          <TableColumn fx:id="showID" prefWidth="75.0" text="ID" />
+                                        <TableColumn prefWidth="109.00000762939453" text="Name" />
+                                        <TableColumn prefWidth="71.40003967285156" text="Contact" />
+                                          <TableColumn fx:id="showDate" prefWidth="91.79998779296875" text="Date" />
+                                          <TableColumn fx:id="showType" prefWidth="76.0" text="Type" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -99,41 +100,41 @@
                               <Font name="Eras Bold ITC" size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="359.0" layoutY="277.0" text="Date :">
+                        <Label layoutX="457.0" layoutY="274.0" text="Date :">
                            <font>
                               <Font name="Candara Bold" size="17.0" />
                            </font>
                         </Label>
-                        <Label layoutX="357.0" layoutY="150.0" text="Type :">
+                        <Label layoutX="455.0" layoutY="147.0" text="Type :">
                            <font>
                               <Font name="Candara Bold" size="17.0" />
                            </font>
                         </Label>
-                        <DatePicker layoutX="457.0" layoutY="274.0" prefHeight="26.0" prefWidth="203.0" />
-                        <SplitMenuButton layoutX="458.0" layoutY="147.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="205.0" text="Select Type">
+                        <DatePicker layoutX="531.0" layoutY="274.0" prefHeight="26.0" prefWidth="137.0" />
+                        <SplitMenuButton layoutX="530.0" layoutY="147.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" text="Select Type">
                            <items>
                               <MenuItem mnemonicParsing="false" text="Type A" />
                               <MenuItem mnemonicParsing="false" text="Type B" />
                               <MenuItem mnemonicParsing="false" text="Type C" />
                            </items>
                         </SplitMenuButton>
-                        <Label layoutX="357.0" layoutY="216.0" text="Contact :">
+                        <Label layoutX="455.0" layoutY="213.0" text="Contact :">
                            <font>
                               <Font name="Candara Bold" size="17.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="458.0" layoutY="209.0" prefHeight="26.0" prefWidth="207.0" />
-                        <Button layoutX="488.0" layoutY="340.0" mnemonicParsing="false" text="Search">
+                        <TextField layoutX="531.0" layoutY="209.0" prefHeight="26.0" prefWidth="135.0" />
+                        <Button layoutX="527.0" layoutY="342.0" mnemonicParsing="false" onAction="#onReadData" text="Search">
                            <font>
                               <Font name="Candara Bold" size="14.0" />
                            </font>
                         </Button>
-                        <Label layoutX="357.0" layoutY="91.0" text="Contact :">
+                        <Label layoutX="455.0" layoutY="88.0" text="Name:">
                            <font>
                               <Font name="Candara Bold" size="17.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="453.0" layoutY="88.0" prefHeight="26.0" prefWidth="207.0" />
+                        <TextField fx:id="filtName" layoutX="527.0" layoutY="88.0" prefHeight="26.0" prefWidth="134.0" />
                      </children></AnchorPane>
               </content>
             </Tab>

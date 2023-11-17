@@ -4,23 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+import java.sql.*;
+
 import javafx.scene.control.SplitMenuButton;
-import java.sql.SQLException;
+
 import java.time.LocalDate;
 
 
 public class Home {
-
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
     private TextField addName;
@@ -32,8 +23,21 @@ public class Home {
     private SplitMenuButton addType;
     @FXML
     private DatePicker addDate;
+    @FXML
+    private TableColumn showID;
+    @FXML
+    private TableColumn showName;
+    @FXML
+    private TableColumn showContact;
+    @FXML
+    private TableColumn showDate;
+    @FXML
+    private TableColumn showType;
+    @FXML
+    private TextField filtName;
 
 
+    public String data[][] =[][];
 
 
     private String getSelectedDateAsString() {
@@ -47,13 +51,15 @@ public class Home {
         }
     }
 
-    public void selectTypeA(ActionEvent event) {
+    //-----------------------------------------------------------------------------------
+
+    public void selectTypeA() {
        addType.setText("Type A");
     }
-    public void selectTypeB(ActionEvent event) {
+    public void selectTypeB() {
         addType.setText("Type B");
     }
-    public void selectTypeC(ActionEvent event) {
+    public void selectTypeC() {
         addType.setText("Type C");
     }
     //-----------------------------------------------------------------------------------
@@ -65,7 +71,6 @@ public class Home {
         String email = addEmail.getText();
         String date = getSelectedDateAsString();
         String type = addType.getText();
-        //String date="dfsd";
         addName.setText("hi"+name+" "+number+" "+email+" "+type+" "+date);
 
 
@@ -73,15 +78,12 @@ public class Home {
         String username = "root";
         String password = "";
 
-        Connection conn;
-        conn = DriverManager.getConnection(jdbcURL, username, password);
+        Connection conn = DriverManager.getConnection(jdbcURL, username, password);
         if (conn != null) {
             String sql = "INSERT INTO datasheet (ID, Name, Number, Email, Type, Date) VALUES (?, ?, ?, ?, ?, ?)";
             try (
-                Connection connection = DriverManager.getConnection(jdbcURL, username, password);
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                PreparedStatement preparedStatement = conn.prepareStatement(sql);
             ) {
-
                 // Set values for parameters in the SQL query
                 preparedStatement.setInt(1, 3);
                 preparedStatement.setString(2, name);
@@ -107,6 +109,34 @@ public class Home {
         } else {
             System.out.println("error");
         }
-
     }
-}
+
+
+
+    public void onReadData(ActionEvent event) throws  SQLException {
+        String jdbcURL = "jdbc:mysql://localhost:3306/appointmentmanagementsystem";
+        String username = "root";
+        String password = "";
+
+        Connection conn = DriverManager.getConnection(jdbcURL, username, password);
+        if (conn != null) {
+            String sql2 = "SELECT * FROM datasheet";
+            try (
+                    PreparedStatement preparedStatement = conn.prepareStatement(sql2);
+                    // Execute the query and get the result set
+                    ResultSet resultSet = preparedStatement.executeQuery();
+            ) {
+                // Iterate through the result set and print data
+                while (resultSet.next()) {
+                    String name = resultSet.getString("Name");
+                    String type = resultSet.getString("Type");
+
+                    filtName.setText(name);
+                    //showType.setText(type);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }}
