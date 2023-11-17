@@ -25,17 +25,17 @@ public class AppointmentManagementSystem extends Application {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
-        String jdbcURL = "jdbc:mysql://localhost:3306/my_test_01";
+        String jdbcURL = "jdbc:mysql://localhost:3306/appointmentmanagementsystem";
         String username = "root";
         String password = "";
 
         Connection conn;
         conn = DriverManager.getConnection(jdbcURL, username, password);
         if (conn != null) {
+            launch();
             System.out.println("connected");
         } else {
             System.out.println("error");
         }
-        launch();
     }
 }
