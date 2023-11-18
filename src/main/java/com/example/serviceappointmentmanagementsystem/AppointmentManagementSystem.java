@@ -15,7 +15,7 @@ public class AppointmentManagementSystem extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AppointmentManagementSystem.class.getResource("Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 690, 526);
-        stage.setTitle("Hello!");
+        stage.setTitle("Appointment management system");
         stage.setScene(scene);
         stage.show();
     }
